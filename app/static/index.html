@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PneumoScan | Advanced Pneumonia Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <main class="container">
+        <header>
+            <h1>PneumoScan<span>AI</span></h1>
+            <p>Advanced Chest X-Ray Analysis for Pneumonia Detection</p>
+        </header>
+
+        <section class="upload-section">
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 16V8M12 8L9 11M12 8L15 11M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 7.01272 15.867 7.03814C15.0152 4.07008 12.2573 2 9 2C5.13401 2 2 5.13401 2 9C2 10.2236 2.31342 11.3739 2.86431 12.3789C1.13543 13.5683 0 15.5395 0 17.5C0 20.5376 2.46243 23 5.5 23H18.5C21.5376 23 24 20.5376 24 17.5C24 17.234 23.9813 16.9723 23.9452 16.7161" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Click or drag X-ray image here</p>
+                    <input type="file" id="file-input" hidden accept="image/*">
+                </div>
+                <div id="preview-container" class="preview-container hidden">
+                    <img id="image-preview" src="" alt="Preview">
+                    <button id="remove-btn" class="remove-btn">&times;</button>
+                </div>
+            </div>
+
+            <button id="analyze-btn" class="btn disabled" disabled>Start AI Analysis</button>
+        </section>
+
+        <section id="result-section" class="result-section hidden">
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                <p>Analyzing morphology...</p>
+            </div>
+            <div id="result-content" class="result-content animate-pop">
+                <div class="result-header">
+                    <h3>Analysis Result</h3>
+                </div>
+                <div class="result-body">
+                    <div class="result-badge" id="result-badge">Detected</div>
+                    <div class="prog-container">
+                        <div class="prog-bar" id="prog-bar"></div>
+                    </div>
+                    <p class="confidence-text">Confidence: <span id="confidence-val">0%</span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
