@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PneumoScan AI - High-precision pneumonia detection using deep learning and chest X-ray analysis.">
+    <title>PneumoScan AI | Advanced Medical Diagnostics</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    <div class="noise-overlay"></div>
+    
+    <main class="app-container">
+        <header class="main-header">
+            <div class="logo-group">
+                <h1>PneumoScan<span class="badge-ai">AI</span></h1>
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">Neural Engine Active</span>
+                </div>
+            </div>
+            <p class="subtitle">Precision Radiographic Diagnosis System [v1.0.4]</p>
+        </header>
+
+        <div class="main-grid">
+            <section class="analysis-panel card">
+                <div class="card-header">
+                    <h2>Capture Environment</h2>
+                    <p>Upload high-resolution DICOM/PNG/JPG</p>
+                </div>
+                
+                <div id="drop-zone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <div class="icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" class="upload-svg">
+                                <path d="M12 16V8M12 8L9 11M12 8L15 11M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 7.01272 15.867 7.03814C15.0152 4.07008 12.2573 2 9 2C5.13401 2 2 5.13401 2 9C2 10.2236 2.31342 11.3739 2.86431 12.3789C1.13543 13.5683 0 15.5395 0 17.5C0 20.5376 2.46243 23 5.5 23H18.5C21.5376 23 24 20.5376 24 17.5C24 17.234 23.9813 16.9723 23.9452 16.7161" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <p class="upload-hint">Drag & drop or <span class="highlight">browse files</span></p>
+                        <input type="file" id="file-input" hidden accept="image/*">
+                    </div>
+                    <div id="preview-container" class="preview-container hidden">
+                        <img id="image-preview" src="" alt="Preview">
+                        <button id="remove-btn" class="remove-btn" title="Remove image">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="example-grid">
+                    <p class="section-label">Quick Test Examples:</p>
+                    <div class="example-images">
+                        <div class="example-item" data-type="normal">
+                            <img src="assets/normal.png" alt="Normal Sample">
+                            <span>Healthy</span>
+                        </div>
+                        <div class="example-item" data-type="pneumonia">
+                            <img src="assets/pneumonia.png" alt="Pneumonia Sample">
+                            <span>Detected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="analyze-btn" class="btn-primary disabled" disabled>
+                    <span class="btn-text">Initiate Deep Scan</span>
+                    <div class="shimmer"></div>
+                </button>
+            </section>
+
+            <section class="results-panel card">
+                <div id="empty-state" class="empty-state">
+                    <div class="pulse-ring"></div>
+                    <p>Awaiting scan sequence...</p>
+                </div>
+
+                <div id="loader" class="loader hidden">
+                    <div class="scan-bar"></div>
+                    <div class="terminal-feed" id="terminal-feed">
+                        <p>> Initializing Neural Fabric...</p>
+                    </div>
+                </div>
+
+                <div id="result-content" class="result-content hidden animate-float">
+                    <div class="diagnosis-header">
+                        <div class="result-badge" id="result-badge">Negative</div>
+                        <p class="timestamp" id="scan-time"></p>
+                    </div>
+                    
+                    <div class="metrics-visual">
+                        <div class="radial-progress">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path id="circle-stroke" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <div class="percentage" id="confidence-val">0%</div>
+                        </div>
+                        <p class="metric-label">Model Confidence Score</p>
+                    </div>
+
+                    <div class="action-footer">
+                        <p class="disclaimer">Note: This is an AI simulation intended for demonstration purposes.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="info-grid">
+            <div class="info-card">
+                <h3>92.6% Accuracy</h3>
+                <p>Validated on a dataset of 5,800+ chest X-ray images using a multi-layered CNN architecture.</p>
+            </div>
+            <div class="info-card">
+                <h3>Edge Deployment</h3>
+                <p>Optimized with TensorFlow and Vercel Serverless Functions for near-instant inference locally.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>&copy; 2026 PneumoScan Diagnostics. All rights reserved. Professional research demo.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
